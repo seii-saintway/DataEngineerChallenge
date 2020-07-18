@@ -10,6 +10,13 @@ delete_results:
 	rm -rf users-*
 	rm average-session-time.txt
 
+TIMESTAMP=$(shell date +%s)
+backup_results:
+	mkdir $(TIMESTAMP)
+	mv results/ $(TIMESTAMP)/
+	mv users-*/ $(TIMESTAMP)/
+	mv average-session-time.txt $(TIMESTAMP)/
+
 run_socket:
 	jupyter-nbconvert --debug --execute --ExecutePreprocessor.timeout=21600 Socket-Text-Stream.ipynb
 
